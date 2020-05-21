@@ -17,8 +17,6 @@ public class BookDTO extends AbstractDTO {
     @NotEmpty
     public String author;
 
-    @NotNull
-    @NotEmpty
     public float price = 0.00f;
 
     @NotNull

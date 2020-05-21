@@ -3,6 +3,7 @@ package com.termos.repository;
 import com.termos.dto.AbstractDTO;
 import com.termos.dto.BookDTO;
 import com.termos.model.Book;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
+@Slf4j
 @Component
 public class BookRepository implements AbstractRepository<Book> {
     private DataSource dataSource;
@@ -33,7 +34,7 @@ public class BookRepository implements AbstractRepository<Book> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
 
         return list;
@@ -53,7 +54,7 @@ public class BookRepository implements AbstractRepository<Book> {
             book = map(resultSet);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return book;
     }
@@ -76,7 +77,7 @@ public class BookRepository implements AbstractRepository<Book> {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
             book = null;
         }
         return book;
@@ -93,7 +94,7 @@ public class BookRepository implements AbstractRepository<Book> {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return id;
     }
@@ -144,7 +145,7 @@ public class BookRepository implements AbstractRepository<Book> {
                 return 0;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return -1;
     }

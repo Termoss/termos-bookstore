@@ -5,6 +5,7 @@ import com.termos.dto.UserDTO;
 import com.termos.model.Authority;
 import com.termos.utility.TimeUtils;
 import com.termos.model.User;
+import lombok.extern.slf4j.XSlf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Component
 public class UserRepository implements AbstractRepository<User>{
     private DataSource dataSource;
@@ -43,7 +45,7 @@ public class UserRepository implements AbstractRepository<User>{
             while(resultSet.next()){
             user = map(resultSet);}
             } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return user;
     }
@@ -59,7 +61,7 @@ public class UserRepository implements AbstractRepository<User>{
             while(resultSet.next()){
                 user = map(resultSet);}
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return user;
     }
@@ -75,7 +77,7 @@ public class UserRepository implements AbstractRepository<User>{
                  while(resultSet.next()){
                      user = map(resultSet);}
              } catch (SQLException e) {
-                 e.printStackTrace();
+                 log.error("SQLExeption e: " + e);
              }
              return user;
     }
@@ -100,7 +102,7 @@ public class UserRepository implements AbstractRepository<User>{
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return id;
     }
@@ -120,7 +122,7 @@ public class UserRepository implements AbstractRepository<User>{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return list;
     }
@@ -205,7 +207,7 @@ public class UserRepository implements AbstractRepository<User>{
             return rs.next();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return false;
     }
@@ -237,7 +239,7 @@ public class UserRepository implements AbstractRepository<User>{
             preparedStatement.executeUpdate();
             user.setUserId(uuid);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
             user = null;
         }
 
@@ -272,7 +274,7 @@ public class UserRepository implements AbstractRepository<User>{
                 preparedStatement1.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
             user = null;
         }
         return user;
@@ -283,7 +285,7 @@ public class UserRepository implements AbstractRepository<User>{
         try {
             return dataSource.getConnection().prepareStatement("SELECT COUNT(user_id) FROM users").executeQuery().getInt(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return -1;
     }

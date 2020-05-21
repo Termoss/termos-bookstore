@@ -2,6 +2,7 @@ package com.termos.dto;
 
 import com.termos.validator.EmailValid;
 import com.termos.validator.PasswordMatches;
+import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

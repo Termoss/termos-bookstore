@@ -4,6 +4,7 @@ import com.termos.dto.AbstractDTO;
 import com.termos.dto.OrderDTO;
 import com.termos.utility.TimeUtils;
 import com.termos.model.Order;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+@Slf4j
 @Component
 public class OrderRepository implements AbstractRepository<Order>{
     private DataSource dataSource;
@@ -42,7 +43,7 @@ public class OrderRepository implements AbstractRepository<Order>{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return order;
     }
@@ -69,7 +70,7 @@ public class OrderRepository implements AbstractRepository<Order>{
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
             result = false;
         }
         return order;
@@ -87,7 +88,7 @@ public class OrderRepository implements AbstractRepository<Order>{
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
             result = false;
         }
         return id;
@@ -103,7 +104,7 @@ public class OrderRepository implements AbstractRepository<Order>{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return list;
     }
@@ -154,7 +155,7 @@ public class OrderRepository implements AbstractRepository<Order>{
         try {
             return dataSource.getConnection().prepareStatement("SELECT COUNT(order_id) FROM orders").executeQuery().getInt(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return -1;
     }

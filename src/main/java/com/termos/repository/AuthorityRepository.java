@@ -2,6 +2,7 @@ package com.termos.repository;
 
 import com.termos.dto.AbstractDTO;
 import com.termos.model.Authority;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Slf4j
 @Component
 public class AuthorityRepository implements AbstractRepository<Authority> {
     private DataSource dataSource;
@@ -49,7 +50,7 @@ public class AuthorityRepository implements AbstractRepository<Authority> {
                 list.add(auth);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return list;
     }
@@ -69,7 +70,7 @@ public class AuthorityRepository implements AbstractRepository<Authority> {
                 list.add(auth);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return map;
     }
@@ -86,7 +87,7 @@ public class AuthorityRepository implements AbstractRepository<Authority> {
                 list.add(auth);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLExeption e: " + e);
         }
         return list;
     }

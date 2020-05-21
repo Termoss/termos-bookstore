@@ -36,7 +36,7 @@ public class OrderController {
         if(orderService.getById(id) == null){
             response.isSuccess = false;
             response.message = "Order doesn't exist.";
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
         response.isSuccess = true;
         response.message = "Order of id: "+id+" returned successfully.";
@@ -67,7 +67,7 @@ public class OrderController {
         if(orderService.getById(id) == null){
             response.isSuccess = false;
             response.message = "Order doesn't exist.";
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
 
         response.isSuccess = true;
@@ -83,7 +83,7 @@ public class OrderController {
         if(orderService.getById(id) == null){
             response.isSuccess = false;
             response.message = "Order doesn't exist.";
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
         response.message = "Deleted order successfully";
         response.isSuccess = true;

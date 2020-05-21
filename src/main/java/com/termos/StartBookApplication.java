@@ -11,6 +11,4 @@ public class StartBookApplication {
         SpringApplication.run(StartBookApplication.class, args);
     }
 
-    /* run this only on profile 'demo', avoid run this in test */
-
 }

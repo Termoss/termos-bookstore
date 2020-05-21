@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Component
+
 public interface AbstractRepository<T extends AbstractModel> {
     T getById(String id);
     T persist(T t);

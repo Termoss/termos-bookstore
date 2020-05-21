@@ -30,7 +30,7 @@ public class BookController {
         if(count == 0){
             response.message = "No content on store.";
             response.isSuccess = true;
-            return ResponseEntity.ok(response);
+            return ResponseEntity.notFound().build();
         }
 
         response.isSuccess = true;
@@ -52,7 +52,7 @@ public class BookController {
     public ResponseEntity create(@RequestBody BookDTO book) {
         var bookDto = bookService.persistNew(book);
         if(bookDto == null){
-            return ResponseEntity.badRequest().body(book);
+            return ResponseEntity.notFound().build();
         }else{
             return ResponseEntity.created(URI.create("/books/"+bookDto.bookId)).body(bookDto);
         }

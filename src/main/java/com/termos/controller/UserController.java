@@ -35,7 +35,7 @@ public class UserController {
         if(user == null){
             response.message = "User doesn't exist.";
             response.isSuccess = false;
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
         response.message = "Returned user successfully.";
         response.isSuccess = true;
@@ -50,7 +50,7 @@ public class UserController {
         if(u != null){
             response.message = "User does already exist.";
             response.isSuccess = false;
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
 
         response.isSuccess = true;
@@ -66,7 +66,7 @@ public class UserController {
         if(u == null){
             response.message = "User doesn't exist.";
             response.isSuccess = false;
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
         u.authorities = user.authorities;
         u.city = user.city;
@@ -90,7 +90,7 @@ public class UserController {
         if(u == null){
             response.message = "User doesn't exist.";
             response.isSuccess = false;
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.notFound().build();
         }
 
         response.isSuccess = true;

@@ -1,7 +1,4 @@
 package com.termos.controller;
-
-import static org.mockito.Mockito.mock;
-
 import java.util.stream.Stream;
 
 import org.junit.Test;
